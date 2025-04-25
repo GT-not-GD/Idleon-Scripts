@@ -189,7 +189,7 @@ class GameBot:
 
             if swipe: # 滑动操作
                 loot_y_offset = -50
-                loot_swipe_width = 600
+                loot_swipe_width = 300
                 swipe_steps = 10
                 self._swipe_loot(center_x, center_y + loot_y_offset, loot_swipe_width, swipe_steps)
             elif refresh: # 刷新操作 (邮差)
@@ -394,6 +394,19 @@ class GameFunctions:
             self.bot.interact_with_image(self.bot.config["afk"]["claim_image"]) # 领取奖励
             time.sleep(0.5)
             self.bot.interact_with_image(self.bot.config["afk"]["gt_leg_image"], swipe=True) # 滑动 GT 腿
+            time.sleep(0.2)
+
+    def afk_ww_loop(self):
+        """WW 专属 AFK 循环"""
+        while self.bot.running:
+            self.bot._click_and_hold(*self.bot.config["default"]["item_position"])  # 点击默认物品位置
+            time.sleep(0.2)
+            for _ in range(100):  # 使用 WW 糖果 100 次
+                self.bot.interact_with_image(self.bot.config["afk"]["ww_candy_image"], duration=0.3)
+                time.sleep(0.1)
+            self.bot.press_key('ESC') # ESC 退出
+            time.sleep(1.0)
+            self.bot.interact_with_image(self.bot.config["afk"]["gt_leg_image"], swipe=True)
             time.sleep(0.2)
 
     def sailing_loop(self):
@@ -1266,7 +1279,8 @@ def main():
     print("13. 勇气")
     print("14. 竞技场")
     print("15. 正义")
-    choice = input("请输入选项 (0-15): ") # 修改选项范围
+    print("16. WW 专属 AFK")  # 添加新选项
+    choice = input("请输入选项 (0-16): ") # 修改选项范围
 
     print("脚本运行中，按下 'delete' 键退出...")
 
@@ -1287,6 +1301,7 @@ def main():
         "13": functions.paying_loop,
         "14": functions.colo_loop,
         "15": functions.justice_loop,
+        "16": functions.afk_ww_loop,  # 映射新功能
     }
 
     selected_function = function_map.get(choice)
