@@ -1739,7 +1739,7 @@ def main():
         "12": ("勇气", functions.paying_loop),
         "13": ("竞技场", functions.colo_loop),
         "14": ("正义（未更新）", functions.justice_loop),
-        "15": ("钓鱼", functions.fishing_loop),
+        "15": ("钓鱼（力道计算有点问题，得空再改）", functions.fishing_loop),
         "16": ("召唤自动点击", functions.summoning_loop),
     }
 
