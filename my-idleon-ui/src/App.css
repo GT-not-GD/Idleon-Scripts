@@ -1,0 +1,90 @@
+/* src/App.css */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6;
+    color: #333;
+}
+
+.App {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+.App-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.App-header h1 {
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content */
+}
+
+.functions-list {
+    width: 100%;
+    max-width: 600px; /* Limit width for readability */
+    margin-bottom: 30px;
+}
+
+.functions-list h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+/* Start/Stop button styles */
+button:nth-of-type(1) { /* Start button */
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+button:nth-of-type(2) { /* Stop button */
+    background-color: #f44336; /* Red */
+    color: white;
+}
+button:nth-of-type(3) { /* Refresh button */
+    background-color: #008CBA; /* Blue */
+    color: white;
+}
+
+input[type="number"],
+select {
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+label {
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+/* Add more specific styles as needed for your UI elements */
