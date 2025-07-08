@@ -1687,7 +1687,7 @@ class GameFunctions:
             self.bot.fishing_initialized = False
         
     # --- 测试功能 ---
-    def test1_loop(self):
+    def summoning_loop(self):
         """
         主程序入口 (测试功能)
         """
@@ -1740,6 +1740,7 @@ def main():
         "13": ("竞技场", functions.colo_loop),
         "14": ("正义（未更新）", functions.justice_loop),
         "15": ("钓鱼", functions.fishing_loop),
+        "16": ("召唤自动点击", functions.summoning_loop),
     }
 
     # 动态生成菜单
