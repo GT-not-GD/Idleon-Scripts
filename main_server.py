@@ -22,9 +22,9 @@ from pynput import mouse
 import base64 
 
 # --- 导入您的 GameBot 和 GameFunctions 类 ---
-# GameBot 和 GameFunctions 类定义在 'main2.py' 文件中
+# GameBot 和 GameFunctions 类定义在 'main.py' 文件中
 try:
-    from main2 import GameBot, GameFunctions, KEY_CODES, TESSERACT_PATH
+    from main import GameBot, GameFunctions, KEY_CODES, TESSERACT_PATH
 except ImportError:
     print("错误: 无法导入 'main2.py'。请确保文件存在，并且 GameBot/GameFunctions 类已正确定义。")
     # 如果导入失败，我们在这里也抛出异常，避免后续代码因为找不到类而报错
