@@ -1,0 +1,10 @@
+# This file lists the Python packages required for your script.
+# To install these packages, run: pip install -r requirements.txt
+
+opencv-python
+numpy
+keyboard
+pywin32 # Includes win32api, win32con, win32gui, win32ui
+pyautogui
+pytesseract
+Pillow # For Image from PIL

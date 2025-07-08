@@ -1,0 +1,531 @@
+WW:
+chng bEngine.getGameAttribute("EquipmentMap")[0][1].h["Speed"]=6
+Misc: Dust 15-50[30], Elemental 20-55[35]
+chng bEngine.getGameAttribute("EquipmentMap")[0][1].h["UQ1val"]=30
+chng bEngine.getGameAttribute("EquipmentMap")[0][1].h["Weapon_Power"]=45
+
+Unlock all Medallions:
+bEngine.getGameAttribute("Compass")[3] = [
+"mushG", "mushR", "frogG", "beanG", "slimeG", "snakeG", "carrotO", "goblinG", "plank",
+"frogBIG", "branch", "acorn", "mushW", "poopSmall", "ratB", "poopD", "jarSand", "mimicA",
+"crabcake", "coconut", "sandcastle", "pincermin", "potato", "steak", "moonman", "sandgiant",
+"snailZ", "sheep", "flake", "stache", "ram", "bloque", "mamoth", "snowball", "penguin",
+"thermostat", "glass", "snakeB", "speaker", "eye", "mushP", "demonP", "w4a2", "w4a3",
+"w4b1", "w4b2", "w4b3", "w4b4", "w4b5", "w4c1", "w4c2", "w4c3", "w4c4", "w5a1", "w5a2",
+"w5a3", "w5a4", "w5a5", "w5b1", "w5b2", "w5b3", "w5b4", "w5b5", "w5b6", "w5c1", "w5c2",
+"w6a1", "w6a2", "w6a3", "w6a4", "w6a5", "w6b1", "w6b2", "w6b3", "w6b4", "w6c1", "w6c2",
+"w6d1", "w6d2", "w6d3", "reindeer", "w7d1", "skele", "skele2", "wolfA", "wolfB", "wolfC",
+"slimeB", "slimeBz", "cactus", "target", "steakR", "potatoB", "snakeZ", "snakeZ2", "snakeZ3",
+"iceknight", "iceBossZ", "iceBossZ2", "iceBossZ3", "Crystal0", "Crystal1", "Crystal2",
+"Crystal3", "Crystal4", "Crystal5", "frogP", "frogNest", "frogD", "frogY", "frogR", "frogW",
+"frogGG", "frogGR", "frogGR2", "frogGR3", "frogGR4", "Meteor", "rocky", "sheepB", "snakeY",
+"crabcakeB", "shovelY", "pghost", "babayaga", "babaHour", "babaMummy", "mini3a", "mini4a",
+"mini5a", "mini6a"
+];
+
+AC:
+chng bEngine.getGameAttribute("EquipmentMap")[0][1].h["Speed"]=6
+chng bEngine.getGameAttribute("EquipmentMap")[0][1].h["UQ1val"]=x
+chng bEngine.getGameAttribute("EquipmentMap")[0][1].h["UQ2val"]=x
+chng bEngine.getGameAttribute("EquipmentMap")[0][1].h["Weapon_Power"]=y
+
+Max out DR bonus on Brightside (for Domeo purposes):
+chng bEngine.getGameAttribute("MapBon")[1][0]=3000000
+Max out XP bonus on Samurai (for leveling purposes):
+chng bEngine.getGameAttribute("MapBon")[1][1]=3000000
+Max out AFK bonus on GMush (for coin purposes):
+chng bEngine.getGameAttribute("MapBon")[1][2]=3000000
+
+Double Bubble:
+chng bEngine.getGameAttribute("OptionsListAccount")[383]=40
+
+Ball:
+chng bEngine.getGameAttribute("OptionsListAccount")[75]=99999
+chng bEngine.getGameAttribute("OptionsListAccount")[324]=100
+chng bEngine.getGameAttribute("OptionsListAccount")[267]=9.9e+100
+
+set all shinys to level 10 (4110 days):
+chng bEngine.gameAttributes.h.Breeding[22][0]=4
+chng bEngine.gameAttributes.h.Breeding[22][1]=4
+chng bEngine.gameAttributes.h.Breeding[22][2]=4
+chng bEngine.gameAttributes.h.Breeding[22][3]=4
+chng bEngine.gameAttributes.h.Breeding[22][4]=4
+chng bEngine.gameAttributes.h.Breeding[22][5]=4
+chng bEngine.gameAttributes.h.Breeding[22][6]=4
+chng bEngine.gameAttributes.h.Breeding[22][7]=4
+chng bEngine.gameAttributes.h.Breeding[22][8]=4
+chng bEngine.gameAttributes.h.Breeding[22][9]=4
+chng bEngine.gameAttributes.h.Breeding[22][10]=4
+chng bEngine.gameAttributes.h.Breeding[22][11]=4
+chng bEngine.gameAttributes.h.Breeding[22][12]=4
+chng bEngine.gameAttributes.h.Breeding[22][13]=4
+chng bEngine.gameAttributes.h.Breeding[22][14]=4
+chng bEngine.gameAttributes.h.Breeding[22][15]=4
+chng bEngine.gameAttributes.h.Breeding[22][16]=4
+chng bEngine.gameAttributes.h.Breeding[23][0]=4
+chng bEngine.gameAttributes.h.Breeding[23][1]=4
+chng bEngine.gameAttributes.h.Breeding[23][2]=4
+chng bEngine.gameAttributes.h.Breeding[23][3]=4
+chng bEngine.gameAttributes.h.Breeding[23][4]=4
+chng bEngine.gameAttributes.h.Breeding[23][5]=4
+chng bEngine.gameAttributes.h.Breeding[23][6]=4
+chng bEngine.gameAttributes.h.Breeding[23][7]=4
+chng bEngine.gameAttributes.h.Breeding[23][8]=4
+chng bEngine.gameAttributes.h.Breeding[23][9]=4
+chng bEngine.gameAttributes.h.Breeding[23][10]=4
+chng bEngine.gameAttributes.h.Breeding[23][11]=4
+chng bEngine.gameAttributes.h.Breeding[23][12]=4
+chng bEngine.gameAttributes.h.Breeding[23][13]=4
+chng bEngine.gameAttributes.h.Breeding[23][14]=4
+chng bEngine.gameAttributes.h.Breeding[23][15]=4
+chng bEngine.gameAttributes.h.Breeding[23][16]=4
+chng bEngine.gameAttributes.h.Breeding[24][0]=4
+chng bEngine.gameAttributes.h.Breeding[24][1]=4
+chng bEngine.gameAttributes.h.Breeding[24][2]=4
+chng bEngine.gameAttributes.h.Breeding[24][3]=4
+chng bEngine.gameAttributes.h.Breeding[24][4]=4
+chng bEngine.gameAttributes.h.Breeding[24][5]=4
+chng bEngine.gameAttributes.h.Breeding[24][6]=4
+chng bEngine.gameAttributes.h.Breeding[24][7]=4
+chng bEngine.gameAttributes.h.Breeding[24][8]=4
+chng bEngine.gameAttributes.h.Breeding[24][9]=4
+chng bEngine.gameAttributes.h.Breeding[24][10]=4
+chng bEngine.gameAttributes.h.Breeding[24][11]=4
+chng bEngine.gameAttributes.h.Breeding[24][12]=4
+chng bEngine.gameAttributes.h.Breeding[24][13]=4
+chng bEngine.gameAttributes.h.Breeding[24][14]=4
+chng bEngine.gameAttributes.h.Breeding[24][15]=4
+chng bEngine.gameAttributes.h.Breeding[24][16]=4
+chng bEngine.gameAttributes.h.Breeding[25][0]=4
+chng bEngine.gameAttributes.h.Breeding[25][1]=4
+chng bEngine.gameAttributes.h.Breeding[25][2]=4
+chng bEngine.gameAttributes.h.Breeding[25][3]=4
+chng bEngine.gameAttributes.h.Breeding[25][4]=4
+chng bEngine.gameAttributes.h.Breeding[25][5]=4
+chng bEngine.gameAttributes.h.Breeding[25][6]=4
+chng bEngine.gameAttributes.h.Breeding[25][7]=4
+chng bEngine.gameAttributes.h.Breeding[25][8]=4
+chng bEngine.gameAttributes.h.Breeding[25][9]=4
+chng bEngine.gameAttributes.h.Breeding[25][10]=4
+chng bEngine.gameAttributes.h.Breeding[25][11]=4
+chng bEngine.gameAttributes.h.Breeding[25][12]=4
+chng bEngine.gameAttributes.h.Breeding[25][13]=4
+chng bEngine.gameAttributes.h.Breeding[25][14]=4
+chng bEngine.gameAttributes.h.Breeding[25][15]=4
+chng bEngine.gameAttributes.h.Breeding[25][16]=4
+
+
+
+OptionsListAccount::
+0 - 
+1 - 
+2 - 
+3 - 
+4 - 
+5 - 
+6 - 
+7 - 
+8 - 
+9 - 
+10 - 
+11 - 
+12 - chat minimize toggle value
+13 - 
+14 - 
+15 - Unclaimed w1 colosseum ticket days
+16 - Unclaimed w1 boss keys days
+17 - 
+18 - 
+19 - 
+20 - 
+21 - 
+22 - 
+23 - 
+24 - 
+25 - # of event items opened
+26 - Shadowban. Set to 0 to remove shadowban
+27 - 0 if your account is not linked to discord, 1 if it's linked
+28 - Probably twitter linked?
+29 - 
+30 - 
+31 - unclaimed w2 boss keys days
+32 -
+33 - minigames amount
+34 - 
+35 - unclaimed w2 colosseum ticket days
+36 - 
+37 - Guild Name
+38 - 
+39 - 
+40 - 
+41 - 
+42 - 
+43 - 
+44 - 
+45 - 
+46 - 
+47 - 
+48 - 
+49 - 
+50 - Sound Setting - All (min: 0, max: 100).
+51 - 
+52 - 
+53 - 
+54 - 
+55 - accumulated talent skill book checkouts
+56 - unclaimed w3 colosseum ticket days
+57 - giant mobs spawn decrease multiplier
+58 - 
+59 - 
+60 - Item Shop popup
+61 - 
+62 - 
+63 - 
+64 - 
+65 - 
+66 - 
+67 - 
+68 - DO NOT TOUCH (triggers Abuse Message aka different shadowban)
+69 - 
+70 - 
+71 - Dungeon Credits (blue) (total number - determines rank - keep lower than 100m)
+72 - Dungeon Credits (blue) (actual amount)
+73 - Dungeon Credits (pink / flurbos)
+74 - Arcade balls (normal)
+75 - Arcade balls (golden)
+76 - 
+77 - 
+78 - 
+79 - 
+80 - Unclaimed w3 boss keys days
+81 - 
+82 - 
+83 - 
+84 - 
+85 - 
+86 - Recipe points (?)(Needs confirmation)
+87 - 
+88 - w4 arena timer
+89 - 
+90 - 
+91 - 
+92 - 4-star cardifiers
+93 - 
+94 - 
+95 - 
+96 - accumulated dilapidated slush days
+97 - 
+98 - accumulated mutated mush days
+99 - Pen Pals highscore, 255 for max bonuses but I'd estimate ~180 as a safe "legitimate" value max to use
+100 - Daily spice claims, cap at 100.
+101 - Killroy crystals (minus value)
+102 - Number of LavaHack drops from Streams.
+103 - lava guide minimized toggle
+104 - 
+105 - Killroy skulls (currency)
+106 - Killroy upgrade (timer)
+107 - Killroy upgrade (talent drops)
+108 - Killroy upgrade (bonus skulls) (Do not set this if you do not have it unlocked yet)
+109 - Killroy upgrade (respawn) (Do not set this if you do not have it unlocked yet)
+110 - Killroy upgrade (5th upgrade) (Do not set this if you do not have it unlocked yet)
+111 - Killroy upgrade (6th upgrade) (Do not set this if you do not have it unlocked yet)
+112 - Killroy runs (total number of finished killroy runs)
+113 - Killroy is wake up (set to 0 to wake up)
+114 - Killroy total talent ribbons dropped.
+115 - Killroy Airhorn reset available (set to 0 to make it available)
+116 - 
+117 - 
+118 - unconfirmed, but appears to control town popup for gem shop. At the moment of posting, any value but 28 triggers a message about current limited specials and value changes to 28
+119 - 
+120 - 
+121 - 
+122 - 
+123 - number of draconic cauldrons for liquid cauldrons in alchemy
+124 - 
+125 - 3d printer, days for multi (artifact)
+126 - Base breed chance, related for pets.
+127 - 
+128 - 
+129 - 
+130 - 
+131 - Post office related.
+132 - Collider, ON or OFF.
+133 - Collider threshold.
+134 - Stamp Atom reduction.
+135 - Atom upgrade amounts
+136 - Displayed message ingame from Lava.
+137 - Daily Rando Boss done.
+138 - DK Orb kill count (Divine Orb skill).
+139 - Plunderous kill count (Pirate Flag skill).
+140 - Keyboard movement event related.
+141 - Keyboard movement event related.
+142 - Keyboard movement event related.
+143 - Keyboard movement event related.
+144 - Keyboard movement event related.
+145 - keybinds-related, keep at 82
+146 - keybinds, in the order shown in Options.
+147 - keybinds, in the order shown in Options.
+148 - keybinds, in the order shown in Options.
+149 - keybinds, in the order shown in Options.
+150 - keybinds, in the order shown in Options.
+151 - keybinds, in the order shown in Options.
+152 - ES Portals kill count (Wormhole skill).
+153 - Selected language, (1 US, 2 EN, 3 FR, etc).
+154 - 95% stamp cost reduction amount
+155 - List of unlocked cards.
+156 - 5-star cardifiers
+157 - Ui related DungHHandRift_Event function.
+158 - Void man portals cleared highscore (for talent calculations)
+159 - For DoOnceReal 175<x<173
+
+(160 - 184 w2 Islands related)
+160 - Uncollected Garbagage (on the ground)
+161 - Garbage (currency in Fishing Islands)
+162 - Bottles (currency in Fishing Islands)
+163 - Garbage Island upgarde (+% Garabage upgrade)
+164 - Garbage Island upgarde (+% Bottles upgrade)
+165 - Trash Island Bribe.
+166 - Rando Island upgrade (+% Loot - all random events)
+167 - Rando Island upgrade (+% for Double Boss)
+168 - Rando Island Boss Id.
+169 - Unlocked Islands (all islands: "abcde_")
+170 - Uncollected bottles in the docks (before entering the map)
+171 - 
+172 - Shimmer Island Dummy dps
+173 - Shimmers (currency in Fishing Islands)
+174 - Shimmer Island upgrade (+ Base STR)
+175 - Shimmer Island upgrade (+ Base AGI)
+176 - Shimmer Island upgrade (+ Base WIS)
+177 - Shimmer Island upgrade (+ Base LUK)
+178 - Shimmer Island upgrade (+% Total Damage)
+179 - Shimmer Island upgrade (+% Class EXP)
+180 - Shimmer Island upgrade (+% Skill Eff)
+181 - Shimmer Island trial damage
+182 - 
+183 - 
+184 - Fractal isle afk time
+
+185 - W2 weekly boss char number turn (0 is first 10 is finished).
+186 - W2 weekly boss current damage over kill.
+187 - W2 weekly boss actual skull, if 5 boss is dead if 0-4 boss is alive.
+188 - W2 weekly boss trophy amount.
+189 - W2 boss town skull reached (from 0 to 5)
+190 - W2 weekly boss reset available (0 for Yes)
+191 - 
+192 - Equinox number of nugget.
+193 - Boss count for Food Lust.
+194 - W6 open or not (1 for Open).
+195 - World Boss re-enters (no gems given if over 300).
+196 - Blue tome page unlocked.
+197 - Red tome page unlocked.
+198 - Tome - most money held
+199 - Tome - jackpots hit
+200 - Tome - highesr drop rarity multi
+201 - Tome - best spiketrap round
+202 - Tome - crystal spawn odds, value of x (displayed in the form of 1/x)
+203 - Tome - max damager weekly boss gravestone.
+204 - Tome - highest killroy score on warrior
+205 - Tome - highest killroy score on archer
+206 - Tome - highest killroy score on mage
+207 - Tome - chaotic Efaunt (1000 - value is tome value)
+208 - Tome - most spore caps
+209 - Tome - best non-duplicate goblin gorefest wave
+210 - Tome - highest snail lvl
+211 - Tome - Oak logs 3D sample
+212 - Tome - Copper Ore 3D
+213 - Tome - Spore cap 3D
+214 - Tome - Goldfish 3D
+215 - Tome - Fly 3D sample
+216 - Tome - possibly tomeQTY index 67
+217 - Tome - most giants killed in a week
+218 - Tome - highest captain level (1000 - value is tome value).
+219 - Tome - max OG.
+220 - Tome - fastest round 100 arena ( 1000 - value is tome value).
+221 - Tome - max bean trade
+222 - Tome - max balls from LBoFaF.
+223 - Tome - unknown, possibly trophies found
+224 - Tome - highest amnt of greenstacks
+225 - W5 miniboss days count.
+226 - W6 miniboss days count.
+227 - 3Rd Killroy run unlocked (1 for Yes).
+228 - 
+229 - 
+230 - 
+231 - Ninja active mastery level
+232 - Ninja max mastery unlocked
+233 - Ninja blue stone (Stealth) - Aquamarine (sneak mastery I)
+234 - Ninja green stone (Jade) - Emerald (sneak mastery I)
+235 - Ninja red stone (Door Damage) - Garnet (sneak mastery I)
+236 - Ninja yellow stone (Gold Charm) - Starite (sneak mastery I)
+237 - Ninja orange stone (EXP) - Topaz (sneak mastery II)
+238 - Ninja purple stone (All Bonus) - Moissanite (sneak mastery II)
+239 - Sneaking Gem level - cheaper upgrades
+240 - Sneaking Gem level - higher charm levels
+241 - Game version chekup for running outdated version (mobile / pc thing)
+242 - Best hoop score.
+243 - Daily Hoop done (0 for No, 1 for Yes).
+244 - 
+245 - 
+246 - 
+247 - 
+248 - 
+249 - 
+250 - 
+251 - 
+252 - unconfirmed but appears to be a toggle on whether the steam-only "midweek madness gift bundle" from May '24 was redeemed
+
+253 - Orion the Great Horned Owl (Feathers)
+254 - Orion the Great Horned Owl upgrade (Feather Generation)
+255 - Orion the Great Horned Owl upgrade (Bonuses of Orion)(!!! Careful: this is the permanent bonus value. keep its reasonable like 70-90!!!)
+256 - Orion the Great Horned Owl upgrade (Feather Multiplier)
+257 - Orion the Great Horned Owl upgrade (Feather Cheapener)
+258 - Orion the Great Horned Owl upgrade (Feather Restart)(!!!Careful: keep its reasonable like 30-40!!!)
+259 - Orion the Great Horned Owl upgrade (Super Feather Production)
+260 - Orion the Great Horned Owl upgrade (Shiny Feathers)
+261 - Orion the Great Horned Owl upgrade (Super Feather Cheapener)
+262 - Orion the Great Horned Owl upgrade (The Great Mega Reset) - lvl this to get Megafeathers (!!! Careful: this is the permanent bonus value. keep its reasonable like 70-90!!!)
+263 - Orion the Great Horned Owl - Unknown (realated to feathers as it is a float, probably the bar fill feathers or something like that)
+264 - Orion the Great Horned Owl - Shiny feathers
+265 - Orion the Great Horned Owl - Discovered (1 for Yes, 0 for No).
+
+266 - Poppy the Kangaroo - Discovered (1 for Yes, 0 for No).
+267 - Poppy the Kangaroo (Fish amount)(here x can be an exponent like "5e+50" and such...)(if setting Xe+X, remeber to use string format)
+268 - Poppy the Kangaroo upgrade (Tasty Fishbait)
+269 - Poppy the Kangaroo upgrade (Quick Reeling)
+270 - Poppy the Kangaroo upgarde (Shiny Lure)
+271 - Poppy the Kangaroo upgrade (Bonuses from Poppy)(!!! Careful: this is the permanent bonus value. keep its reasonable like 70-90!!!)
+272 - Poppy the Kangaroo upgrade (Fishy Discount)
+273 - Poppy the Kangaroo upgrade (Juicy Worm)
+274 - Poppy the Kangaroo upgrade (Fishero Reset)(!!!Careful: keep its reasonable like 30-40!!!)
+275 - Poppy the Kangaroo upgrade (Fishing Buddy)
+276 - Poppy the Kangaroo upgrade (Lightning Quickness)
+277 - Poppy the Kangaroo upgrade (Fisheroo Investing)
+278 - Poppy the Kangaroo upgrade (Multihook Fishing)
+279 - Poppy the Kangaroo upgrade (Greatest Catch)(needs to be +12 since its counts all other 11 fishes in this value)
+280 - Poppy the Kangaroo - ?
+281 - Poppy the Kangaroo Fish Amount (yellow)
+282 - Poppy the Kangaroo Fish Amount (red)
+283 - Poppy the Kangaroo Fish Amount (green)
+284 - Poppy the Kangaroo Fish Amount (purple)
+285 - Poppy the Kangaroo Fish Amount (silver)
+286 - Poppy the Kangaroo Fish Amount (blue)
+287 - Poppy the Kangaroo - ?
+288 - Poppy the Kangaroo - Fishing bar %.
+289 - Poppy the Kangaroo - Shiny Fish bar %.
+290 - Poppy the Kangaroo Reset Points amount
+291 - Poppy the Kangaroo Reset Points upgrades (blue)
+292 - Poppy the Kangaroo Reset Points upgrades (yellow)
+293 - Poppy the Kangaroo Reset Points upgrades (green)
+294 - Poppy the Kangaroo Reset Points upgrades (red)
+295 - Poppy the Kangaroo Reset Points upgrades (silver)
+296 - Poppy the Kangaroo Tar pit (Tartar amount)
+297 - Poppy the Kangaroo Tar pit upgrade (Super Yummy Bait)
+298 - Poppy the Kangaroo Tar pit upgrade (Bonus Catching)
+299 - Poppy the Kangaroo Tar pit upgrade (Bluefin Frenzy)
+300 - Poppy the Kangaroo Tar pit upgrade (Fishy Reductions)
+301 - Poppy the Kangaroo Tar pit upgrade (Super Tarbait)
+302 - Poppy the Kangaroo Tar pit upgrade (Tarrific Resets)
+303 - Poppy the Kangaroo Tar pit upgrade (Mongo Multipliers)
+304 - Poppy the Kangaroo Tar pit upgrade (King Worm)
+305 - Poppy the Kangaroo Tar pit Tartar fishing progress bar (useless, set between 0-100)
+
+306 - 
+307 - 
+308 - Bonus Ballet - Player vote(1:Top, 2:Mid, 3:Bottom)
+309 - Weeks since January 1 1970
+310 - Event Points owned
+311 - Event Shop bonuses purchased
+312 - 
+313 - 
+314 - 
+315 - 
+316 - 
+317 - 
+318 - daily number of resources nodes in the Hole destroyed (max 5)
+319 - current endless summoning level (CAUTION: does not provide associated win rewards, simply skips ahead to that fight)
+320 - number of equinox pengy (can be increased above 5, but should not be required with instantdream)
+321 - endless summoning high performance toggle
+322 - 
+323 - Event Shop - Supreme Wiring days (max 50).
+324 - Royale Arcade Balls.
+325 - Number of available Wheel spins.
+326 - Cap of daily Event tries gem purchases (set to 0 to purchase again)
+327 - 
+328 - 
+329 - Death Bringer - Total bones collected.
+330 - Death Bringer - Bone 1 - Femur
+331 - Death Bringer - Bone 2 - Ribcage
+332 - Death Bringer - Bone 3 - Cranium
+333 - Death Bringer - Bone 4 - Bovinae
+334 - Death Bringer - Knockout stacks (max at 78)
+335 - Death Bringer - Elimination stacks (max at 78)
+336 - Death Bringer - Annihilation stacks (max at 78)
+337 - 
+338 - Upgrade Vault - Knockout
+339 - 
+340 - Upgrade Vault - Ore Mined
+341 - 
+342 - 
+343 - 
+344 - 
+345 - Uprgade Vault - Fish Caught
+346 - Upgrade Vault - Bugs Catched
+347 - Upgrade Vault - Post Office boxes
+348 - 
+349 - 
+350 - 
+351 - 
+352 - 
+353 - hidden wisdom minigame high score
+354 - Sampling days - Biggole Mole companion.
+355 - number of rupie slugs purchased
+356 - Tome - DB Max Wraith Damage as observed with Grimoire open.
+357 - Wind Walker - Dust 1 - Stardust
+358 - Wind Walker - Dust 2 - Moondust
+359 - Wind Walker - Dust 3 - Solardust
+360 - Wind Walker - Dust 4 - Cooldust
+361 - Wind Walker - Dust 5 - Novadust
+362 - Wind Walker - Total amount of dust collected (referenced by WW talent 14)
+363 - Compass/Atom Collider - Magnesium days accumulated (60 max)
+364 - Compass - Moon of Print days accumulated (100 max)
+365 - Top of the Mornin' kill count check (negative number - set to 0 if you want to find items again with increased odds)
+366 - Exalt Stamps purchased from gem shop
+367 - Death Bringer flag for Charred Bones enabled (1 for Yes).
+368 - 
+369 - (suspected) Emperor Showdown Level (value+1 is your current showdown)
+370 - Entries left for Emperor (negative number for entries, goes up to 0) - (hits 1 if you run out)
+371 - 
+372 - 
+373 - 
+374 - 
+375 - 
+376 - 
+377 - 
+378 - 
+379 - Armor Set Smithy Sets Unlocked
+380 - Armor Set Smithy unlocked
+381 - Armor Set Smithy days left to unlock.
+382 - Daily Emperor Attempts.
+383 - Amount of Pristine alchemy bubble.
+384 - Index of unlocked "prismaed" bubbles.
+385 - 
+386 - 
+387 - 
+388 - Arcane Cultist - Tachyon 1
+389 - Arcane Cultist - Tachyon 2
+390 - Arcane Cultist - Tachyon 3
+391 - Arcane Cultist - Tachyon 4
+392 - Arcane Cultist - Tachyon 5
+393 - Arcane Cultist - Tachyon 6
+394 - Arcane Cultist - Total Tachyon ever collected
+395 - Pristine bubble found with Arcane Cultist.
+396 - (suspected) related to Prisma Bubbles drop from AC
+397 - (suspected) related to Prisma Bubbles drop from AC
+398 - Wind Walker - Disable weapon to drop (0 for Enable, 1 for Disable).
+399 - Wind Walker - Disable ring to drop (0 for Enable, 1 for Disable).
+400 - Wind Walker - Disable upgrades stones to drop (0 for Enable, 1 for Disable).
+401 - Wind Walker flag for Aethermoon enabled (1 for Yes).
+402 - Items discovered in sneaking (resets daily) - hard nerf to discoverable pristines
+403 - 
+406 - 
+407 - 
