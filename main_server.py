@@ -35,6 +35,31 @@ game_bot_instance: GameBot | None = None
 game_functions_instance: GameFunctions | None = None
 running_threads: dict[str, threading.Thread] = {} # 存储正在运行的自动化任务线程
 
+# --- 将 function_map 定义或导入到这里 ---
+# 为了解耦，最好是在 GameFunctions 类中定义一个方法来获取这个映射
+# 但为了简单，我们直接在这里定义。
+# 注意：这里的 'functions' 需要是有效的 GameFunctions 实例
+# 我们将在 lifespan 中创建它
+FUNCTION_MAP_DESCRIPTIONS = {
+    "test_loop": "测试",
+    "afk_fast_forward_loop": "AFK 快进",
+    "afk_gene_extract_loop": "AFK 基因萃取",
+    "sailing_loop": "航海",
+    "postman_loop": "邮差",
+    "dungeon_lootroll_loop": "地牢骰子",
+    "breeding_loop": "养殖",
+    "gaming_loop": "游戏",
+    "boss_loop": "Boss",
+    "open_loop": "开箱",
+    "owl_loop": "猫头鹰（未更新）",
+    "summoning_loop": "召唤自动点击",
+    "farming_loop": "农场",
+    "paying_loop": "勇气",
+    "colo_loop": "竞技场",
+    "justice_loop": "正义（功能未完成）",
+    "fishing_loop": "钓鱼",
+}
+
 # --- FastAPI 应用设置 ---
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -111,29 +136,25 @@ async def read_root():
 
 @app.get("/status")
 async def get_status():
-    """获取所有功能的运行状态"""
-    global running_threads, game_functions_instance, game_bot_instance # !!! 再次声明全局变量 !!!
+    """获取所有功能的运行状态和中文名称"""
+    global running_threads, game_functions_instance
     
-    status = {}
-    if not game_functions_instance or not game_bot_instance: 
-        # 如果初始化失败了，返回错误
-        return {"error": "Core components not initialized"}
-        
-    # 动态获取所有可公开调用的方法
-    all_function_names = [func_name for func_name in dir(game_functions_instance) 
-                          if callable(getattr(game_functions_instance, func_name)) 
-                          and not func_name.startswith('_') 
-                          and func_name not in ['bot', '__init__', '__doc__', '__module__']] 
+    if not game_functions_instance:
+        return {"error": "核心组件未初始化"}
     
-    # 使用全局的 running_threads 来检查状态
-    for func_name in all_function_names:
-        is_running = False
-        # 访问全局的 running_threads
-        if func_name in running_threads and running_threads[func_name].is_alive():
-            is_running = True
-        status[func_name] = {"running": is_running}
+    status_response = {}
+    
+    # 遍历我们定义好的中文名称映射
+    for func_name, chinese_name in FUNCTION_MAP_DESCRIPTIONS.items():
+        # 检查这个函数是否真的存在于 GameFunctions 实例中
+        if hasattr(game_functions_instance, func_name):
+            is_running = func_name in running_threads and running_threads[func_name].is_alive()
+            status_response[func_name] = {
+                "name": chinese_name, 
+                "running": is_running
+            }
 
-    return status
+    return status_response
 
 @app.post("/start/{function_name}")
 async def start_function(function_name: str):

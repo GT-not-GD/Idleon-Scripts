@@ -1,52 +1,22 @@
-// src/App.jsx (纯 JavaScript 版本)
+// src/App.jsx
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import './App.css'; // 你的样式文件
+import './App.css';
 
-// --- 后端 API 地址 ---
 const API_BASE_URL = 'http://127.0.0.1:8000';
 
 // --- 单个功能控制组件 ---
-// (这个组件没有使用任何 TypeScript 特性，所以不需要修改)
-function FunctionControl({ functionName, isRunning, onAction }) {
-    // 将函数名（如 "afk_fast_forward_loop"）转换为更易读的格式（如 "Afk Fast Forward Loop"）
-    const readableName = functionName
-        .replace(/_loop$/, '') // 移除末尾的 _loop
-        .replace(/_/g, ' ')   // 将下划线替换为空格
-        .split(' ')
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // 首字母大写
-        .join(' ');
-
+function FunctionControl({ functionKey, name, isRunning, onAction }) {
     return (
-        <div style={{
-            border: '1px solid #eee',
-            padding: '10px 15px',
-            margin: '5px 0',
-            borderRadius: '4px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            backgroundColor: isRunning ? '#e8f5e9' : '#fff', // 运行时显示淡绿色背景
-            transition: 'background-color 0.3s ease'
-        }}>
-            <span style={{ flex: 1 }}>
-                <strong>{readableName}</strong>
-                <span style={{ marginLeft: '15px', color: isRunning ? '#2e7d32' : '#d32f2f', fontWeight: 'bold' }}>
-                    {isRunning ? '● 运行中' : '● 已停止'}
-                </span>
-            </span>
+        <div className={`function-control ${isRunning ? 'running' : ''}`}>
+            <div className="function-control-status">
+                <div className={`status-indicator ${isRunning ? 'running' : 'stopped'}`}></div>
+                <span className="function-control-name">{name}</span> {/* 直接使用传入的中文名 */}
+            </div>
             <div>
-                {!isRunning && (
-                    <button onClick={() => onAction(functionName, 'start')} style={{ marginRight: '5px' }}>
-                        开始
-                    </button>
-                )}
-                {isRunning && (
-                    <button onClick={() => onAction(functionName, 'stop')} style={{ marginRight: '5px' }}>
-                        停止
-                    </button>
-                )}
+                {!isRunning && <button className="btn-start" onClick={() => onAction(functionKey, 'start')}>开始</button>}
+                {isRunning && <button className="btn-stop" onClick={() => onAction(functionKey, 'stop')}>停止</button>}
             </div>
         </div>
     );
@@ -54,143 +24,167 @@ function FunctionControl({ functionName, isRunning, onAction }) {
 
 // --- 游戏截图显示组件 ---
 function ScreenshotViewer() {
-    // 移除 <string | null> 类型
     const [imageUrl, setImageUrl] = useState(null);
     const [error, setError] = useState(null);
-    const [screenshotRegion, setScreenshotRegion] = useState('full');
+    const [isLoading, setIsLoading] = useState(true);
 
-    const fetchScreenshot = async () => {
+    const fetchScreenshot = useCallback(async () => {
+        if (!isLoading) { // 只有在不处于加载状态时才将 isLoading 设置为 true
+            setIsLoading(true);
+        }
         try {
-            const regionParam = screenshotRegion === 'full' ? 'full' : screenshotRegion;
-            const response = await axios.get(`${API_BASE_URL}/screenshot/default?region=${regionParam}`, {
+            const response = await axios.get(`${API_BASE_URL}/screenshot/default?region=full`, {
                 responseType: 'arraybuffer'
             });
             const blob = new Blob([response.data], { type: 'image/png' });
-            const url = URL.createObjectURL(blob);
-            if (imageUrl) {
-                URL.revokeObjectURL(imageUrl);
+            const newUrl = URL.createObjectURL(blob);
+
+            // --- 解决抖动的核心逻辑 ---
+            const img = new Image();
+            img.src = newUrl;
+            img.onload = () => {
+                // 新图片加载完成后，才更新显示的 URL
+                setImageUrl(currentUrl => {
+                    // 销毁上一个旧的 URL
+                    if (currentUrl) {
+                        URL.revokeObjectURL(currentUrl);
+                    }
+                    return newUrl; // 使用新的 URL
+                });
+                setError(null);
+                setIsLoading(false);
+            };
+            img.onerror = () => {
+                // 如果新图片加载失败
+                setError('加载截图失败。请确保游戏窗口可见。');
+                setIsLoading(false);
+                URL.revokeObjectURL(newUrl); // 别忘了清理失败的 URL
             }
-            setImageUrl(url);
-            setError(null);
+            // -------------------------
+
         } catch (err) {
             console.error(`获取截图时出错:`, err);
-            setError('加载截图失败。请确保游戏正在运行并且窗口可见。');
-            setImageUrl(null);
+            setError('加载截图失败。请确保游戏窗口可见。');
+            setImageUrl(currentUrl => {
+                if (currentUrl) URL.revokeObjectURL(currentUrl);
+                return null;
+            });
+            setIsLoading(false);
         }
-    };
+    }, [isLoading]); // 依赖 isLoading 来避免重复设置
 
     useEffect(() => {
+        const intervalId = setInterval(fetchScreenshot, 2000); // 可以适当缩短刷新间隔，比如2秒
+        // 组件加载时立即执行一次
         fetchScreenshot();
-        const intervalId = setInterval(fetchScreenshot, 5000);
+        
         return () => {
             clearInterval(intervalId);
-            if (imageUrl) {
-                URL.revokeObjectURL(imageUrl);
-            }
+            if (imageUrl) URL.revokeObjectURL(imageUrl);
         };
-    }, [screenshotRegion]);
-
-    // 移除事件参数的类型
-    const handleRegionChange = (event) => {
-        setScreenshotRegion(event.target.value);
-    };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []); // 初始加载只执行一次
 
     return (
-        <div style={{ marginTop: '30px', border: '1px solid #ddd', padding: '15px', borderRadius: '8px', width: '100%', maxWidth: '800px' }}>
+        <div className="card">
             <h2>游戏截图</h2>
-            <div style={{ marginBottom: '15px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div className="screenshot-controls">
                 <label htmlFor="screenshot-region">区域:</label>
-                <select id="screenshot-region" value={screenshotRegion} onChange={handleRegionChange}>
+                <select id="screenshot-region">
                     <option value="full">整个窗口</option>
                 </select>
-                <button onClick={fetchScreenshot}>立即刷新</button>
+                <button className="btn-refresh" onClick={fetchScreenshot}>立即刷新</button>
             </div>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            {imageUrl ? (
-                <img src={imageUrl} alt="游戏截图" style={{ width: '100%', border: '1px solid #eee' }} />
-            ) : (
-                <div style={{ height: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f9f9f9', border: '1px dashed #ccc' }}>
-                    <p>正在加载截图...</p>
-                </div>
-            )}
+            <div className="screenshot-container">
+                {/* 只有在第一次加载时显示 "正在加载" */}
+                {isLoading && !imageUrl && <p>正在加载截图...</p>}
+                {error && <p style={{ color: 'var(--error-color)' }}>{error}</p>}
+                {/* 即使在加载新图时，依然显示旧图，避免空白 */}
+                {imageUrl && <img src={imageUrl} alt="游戏截图" />}
+            </div>
         </div>
     );
 }
 
 // --- 主应用组件 ---
 function App() {
+    // status 现在会是 { "afk_loop": { name: "AFK", running: false }, ... }
     const [status, setStatus] = useState({});
+    const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
-    const fetchStatus = async () => {
+    const fetchStatus = useCallback(async () => {
         try {
             const response = await axios.get(`${API_BASE_URL}/status`);
             setStatus(response.data);
-        } catch (error) {
-            console.error("获取状态时出错:", error);
-            setStatus({ error: '无法获取状态。后端服务是否已启动？' });
+            setError(null);
+        } catch (err) {
+            console.error("获取状态时出错:", err);
+            setError('无法获取状态。后端服务是否已启动？');
+        } finally {
+            setIsLoading(false);
         }
-    };
+    }, []);
 
     useEffect(() => {
         fetchStatus();
         const intervalId = setInterval(fetchStatus, 3000);
         return () => clearInterval(intervalId);
-    }, []);
+    }, [fetchStatus]);
 
-    const handleFunctionAction = async (functionName, action) => {
-        const url = `${API_BASE_URL}/${action}/${functionName}`;
+    // onAction 现在接收 functionKey (英文函数名)
+    const handleFunctionAction = async (functionKey, action) => {
         try {
-            await axios.post(url);
-            setTimeout(fetchStatus, 500);
-        } catch (error) {
-            console.error(`执行 ${action} '${functionName}' 时出错:`, error);
-            alert(`操作 ${functionName} 失败，请查看控制台获取详情。`);
+            await axios.post(`${API_BASE_URL}/${action}/${functionKey}`);
+            setTimeout(fetchStatus, 300);
+        } catch (err) {
+            alert(`操作失败，请查看控制台。`);
         }
     };
 
     const handleStopAll = async () => {
         try {
             await axios.post(`${API_BASE_URL}/stop/all`);
-            setTimeout(fetchStatus, 500);
-        } catch (error) {
-            console.error("停止所有功能时出错:", error);
+            setTimeout(fetchStatus, 300);
+        } catch (err) {
             alert('停止所有功能失败，请查看控制台。');
         }
     };
-
-    const functionNames = Object.keys(status).filter(key => key !== 'error');
+    
+    // 我们现在遍历 status 对象的键 (keys)，这些键是英文函数名
+    const functionKeys = Object.keys(status);
 
     return (
         <div className="App">
             <header className="App-header">
                 <h1>Idleon 自动化控制面板</h1>
-                {status.error && <p style={{ color: 'red' }}>{status.error}</p>}
-                <div style={{ margin: '10px 0' }}>
-                    <button onClick={handleStopAll} style={{ padding: '10px 20px', fontSize: '1.1em', cursor: 'pointer', backgroundColor: '#c62828' }}>
-                        停止所有任务
-                    </button>
-                </div>
+                {error && <p className="error-message">{error}</p>}
+                <button className="btn-stop-all" onClick={handleStopAll}>停止所有任务</button>
             </header>
 
-            <main>
+            <div className="card">
+                <h2>自动化任务</h2>
                 <div className="functions-list">
-                    <h2>自动化任务</h2>
-                    {functionNames.length > 0 ? (
-                        functionNames.map(funcName => (
+                    {isLoading ? (
+                        <p>正在加载任务列表...</p>
+                    ) : functionKeys.length > 0 ? (
+                        // 遍历 functionKeys
+                        functionKeys.map(funcKey => (
                             <FunctionControl
-                                key={funcName}
-                                functionName={funcName}
-                                isRunning={status[funcName]?.running || false}
+                                key={funcKey}
+                                functionKey={funcKey} // 把英文函数名作为 key 和参数
+                                name={status[funcKey].name} // 把中文名传给 name 属性
+                                isRunning={status[funcKey].running}
                                 onAction={handleFunctionAction}
                             />
                         ))
                     ) : (
-                        <p>正在加载任务列表或无可用任务...</p>
+                        <p>无可用任务。</p>
                     )}
                 </div>
+            </div>
 
-                <ScreenshotViewer />
-            </main>
+            <ScreenshotViewer />
         </div>
     );
 }

@@ -1,90 +1,226 @@
-/* src/App.css */
-body {
-    font-family: sans-serif;
+/* src/App.css (优化版) */
+
+/* 使用 CSS 变量，方便统一管理颜色和样式 */
+:root {
+    --bg-color: #1a1a1a; /* 深色背景 */
+    --surface-color: #242424; /* 卡片背景色 */
+    --primary-text-color: #e0e0e0; /* 主要文字颜色 */
+    --secondary-text-color: #a0a0a0; /* 次要文字颜色 */
+    --border-color: #3a3a3a; /* 边框颜色 */
+    --accent-color: #646cff; /* 强调色，如链接和焦点 */
+    
+    --success-color: #4CAF50; /* 绿色，表示成功/运行中 */
+    --success-bg-color: rgba(76, 175, 80, 0.1);
+    --error-color: #f44336; /* 红色，表示错误/停止 */
+    --error-bg-color: rgba(244, 67, 54, 0.1);
+    
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+html, body {
+    width: 100%;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
-    background-color: #f4f7f6;
-    color: #333;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--primary-text-color);
+    line-height: 1.6;
+}
+
+#root {
+  width: 100%; /* 确保 #root 继承 body 的全部宽度 */
+  display: flex;
+  flex-direction: column; /* 改为纵向排列 */
+  align-items: center;    /* 水平居中 .App 容器 */
+  padding: 40px 20px;
+  box-sizing: border-box;
 }
 
 .App {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    border-radius: 8px;
+    width: 100%; /* 宽度占满父容器 #root 的可用空间 */
+    max-width: 900px; /* 但最大宽度不超过 900px */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
 }
 
 .App-header {
     text-align: center;
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #eee;
+    width: 100%;
 }
 
 .App-header h1 {
-    margin-bottom: 10px;
-    color: #2c3e50;
+    font-size: 2.5em;
+    font-weight: 700;
+    margin: 0 0 10px;
+    color: #fff; /* 标题用亮白色 */
 }
 
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center content */
+.App-header .error-message {
+    background-color: var(--error-bg-color);
+    color: var(--error-color);
+    padding: 10px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--error-color);
+    margin-top: 15px;
+}
+
+/* 卡片式设计 */
+.card {
+    background-color: var(--surface-color);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    width: 100%;
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--border-color);
+    box-sizing: border-box; 
+}
+
+.card h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
 }
 
 .functions-list {
-    width: 100%;
-    max-width: 600px; /* Limit width for readability */
-    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.functions-list h2 {
-    text-align: center;
-    margin-bottom: 15px;
-    color: #2c3e50;
+.function-control {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-button {
-    padding: 8px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+.function-control.running {
+    background-color: var(--success-bg-color);
+    border-color: var(--success-color);
+}
+
+.function-control-name {
+    font-weight: 600;
+}
+
+.function-control-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-size: 0.9em;
-    transition: background-color 0.2s ease;
+}
+
+.status-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--secondary-text-color);
+}
+
+.status-indicator.running {
+    background-color: var(--success-color);
+    box-shadow: 0 0 8px var(--success-color);
+}
+
+.status-indicator.stopped {
+    background-color: var(--error-color);
+}
+
+/* 统一按钮样式 */
+button {
+    font-family: var(--font-family);
+    border: none;
+    border-radius: 6px;
+    padding: 10px 18px;
+    font-size: 0.95em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.1s ease, background-color 0.2s ease;
+    color: #fff;
 }
 
 button:hover {
-    opacity: 0.9;
+    transform: translateY(-1px);
 }
 
-/* Start/Stop button styles */
-button:nth-of-type(1) { /* Start button */
-    background-color: #4CAF50; /* Green */
-    color: white;
-}
-button:nth-of-type(2) { /* Stop button */
-    background-color: #f44336; /* Red */
-    color: white;
-}
-button:nth-of-type(3) { /* Refresh button */
-    background-color: #008CBA; /* Blue */
-    color: white;
+button:active {
+    transform: translateY(0);
 }
 
-input[type="number"],
+.btn-start {
+    background-color: var(--success-color);
+}
+.btn-start:hover {
+    background-color: #5cb85c;
+}
+
+.btn-stop {
+    background-color: var(--error-color);
+}
+.btn-stop:hover {
+    background-color: #e53935;
+}
+
+.btn-stop-all {
+    background-color: #b71c1c; /* 更深的红色 */
+    padding: 12px 24px;
+    font-size: 1.1em;
+    box-shadow: 0 4px 8px rgba(183, 28, 28, 0.3);
+}
+
+.btn-refresh {
+    background-color: #0288d1;
+}
+.btn-refresh:hover {
+    background-color: #039be5;
+}
+
+/* 截图区域样式 */
+.screenshot-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
 select {
-    padding: 8px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 0.9em;
+    font-family: var(--font-family);
+    background-color: var(--surface-color);
+    color: var(--primary-text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 9px;
+    font-size: 0.95em;
 }
 
-label {
-    margin-right: 5px;
-    font-weight: bold;
+.screenshot-container {
+    width: 100%;
+    min-height: 200px;
+    border: 2px dashed var(--border-color);
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* 确保图片不会溢出边框 */
+    background-color: #1c1c1c;
 }
 
-/* Add more specific styles as needed for your UI elements */
+.screenshot-container img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
